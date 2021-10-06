@@ -1,0 +1,44 @@
+
+    .input-content {
+        flex: 85%;
+        padding: 3% 10% 3% 5%;
+        overflow: scroll;        
+
+        .header {
+            display: flex;
+        }
+
+        hr {
+            margin-bottom: 2rem;
+            width: 10%;
+            margin-left: 0.25rem;
+            float: left;
+            background-color: #403F3D;
+            border: 2px solid #403F3D;
+            border-radius: 30px;
+        }
+
+        .title-input {
+            margin-bottom: 2rem;
+            input {
+                font-size: 36px;
+                font-weight: 600; 
+            }      
+        }
+    }
+
+    .input-content::-webkit-scrollbar {
+        display: none;
+      }
+      
+
+    .utility {    
+        margin-top: 2.5rem !important;
+        flex: 15%;
+
+        .labels {
+            p{
+                font-weight: 600;
+            }
+        }
+    }
