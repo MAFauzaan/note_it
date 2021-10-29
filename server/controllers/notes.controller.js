@@ -12,14 +12,16 @@ exports.getNotes = (req, res, next) => {
 }
 
 exports.createNewNote = (req, res, next) => {
-    const {title, labels, type, content, status} = req.body;
+    const {title, labels, type, content } = req.body;
+
+    console.log(req.body)
 
     const newNote = new Note({
         title: title,
         labels: labels,
         type: type,
         content: content,
-        status: status
+        // status: status
     })
 
     newNote.save()

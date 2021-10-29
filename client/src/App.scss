@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 
 .container {
+
+    min-height: 700px;
     
     h1{
         font-family: 'Shadows Into Light', cursive;
@@ -8,7 +10,7 @@
         font-weight: 600;
     }
 
-    hr {
+    hr {    
         width: 75%;
         float: left;
         background-color: #403F3D;

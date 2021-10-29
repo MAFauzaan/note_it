@@ -2,11 +2,17 @@ import { useState } from "react";
 import { Modal, Paper, TextField, Typography, Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import CreateIcon from '@mui/icons-material/Create';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CancelIcon from '@mui/icons-material/Cancel';
+import axios from 'axios'
+
 
 import { deactivateModal } from "../../store/actions/actions";
 import { Labels } from "../labels/labels";
 
 import "./NewListModal.scss"
+
+require('dotenv').config();
 
 const NewListModal = () => {
     const dispatch = useDispatch();
@@ -15,6 +21,8 @@ const NewListModal = () => {
     
     const [ title, setTitle ] = useState(" ");
     const [ content, setContent ] = useState(" ");
+    const [ label, setLabel ] = useState({});
+    const [ hover, setHover ] = useState(false)
 
 
     const handleTitleChange = (e) => {
@@ -27,7 +35,21 @@ const NewListModal = () => {
         setContent(e.target.value);
     }
 
-    console.log(title, content)
+    const postNote = () => {
+        axios.post(`${process.env.REACT_APP_BASE_URL}/postNewNote`, {
+            title: title,
+            content: content,
+            label: label
+        })
+            .then(result => {
+                console.log(result)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    console.log(title, content, label);
 
     return(
     <Modal
@@ -38,12 +60,27 @@ const NewListModal = () => {
 
             <div className="input-content">
                 <div className="header">
-                    <Typography variant="h3">Create a new note <CreateIcon sx={{fontSize: '30px'}}/></Typography>
-                    <div className="label">
-                        
-                    </div>
+                    <Typography variant="h4">Create a new note <CreateIcon sx={{fontSize: '30px'}}/></Typography>
                 </div>
-                <hr />
+                <hr /><br /><br />
+                {
+                    label &&
+                    <div 
+                        className="label" 
+                        style={{backgroundColor: `${label.color}`}}
+                        onMouseEnter={() => setHover(true)}
+                        onMouseLeave={() => setHover(false)}
+                        onClick={() => setLabel(null)}
+                    >
+                        <Typography>{label.name}</Typography> 
+                        {
+                            hover?
+                            <CancelIcon className="cancel-icon"/>                       
+                            :
+                            null
+                        }
+                    </div>
+                }
                 <div className="title-input">
                     <TextField 
                         // value={title}
@@ -68,18 +105,34 @@ const NewListModal = () => {
                             disableUnderline: true
                         }}
                     />
-                </div> 
+                </div>
+                <Button 
+                    className="save-button"
+                    onClick={postNote}
+                >
+                    Save
+                </Button>
+ 
             </div>
 
             <div className="utility">
                <div className="labels">
-                   <Typography>Add a label</Typography>
+                   <Typography sx={{textAlign: 'center'}}>Add a label</Typography>
                    {
                        Labels.map(label => (
-                            <Button>{label.name}</Button>   
+                            <Button 
+                                fullWidth 
+                                className="label-button"
+                                sx={{backgroundColor: `${label.color}`}}
+                                onClick={() => setLabel(label)}
+                            >
+                                {label.name}
+                            </Button>   
                        ))
                    }
-                   <Button><CreateIcon/></Button>
+                   <Button fullWidth className="add-label">
+                       <AddCircleOutlineIcon sx={{color: '#ffff'}}/>
+                    </Button>
                 </div>
             </div>
             
