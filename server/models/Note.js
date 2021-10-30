@@ -6,8 +6,8 @@ const NoteSchema = new Schema({
         type: String,
         required: true
     },
-    labels: {
-        type: [],
+    label: {
+        type: Object,
         required: true
     },
     type: {
@@ -18,9 +18,9 @@ const NoteSchema = new Schema({
         type: String,
         required: true
     },
-    status: {
-        type: String
-    }
+    // status: {
+    //     type: String
+    // }
 })
 
 module.exports = mongoose.model('Note', NoteSchema)

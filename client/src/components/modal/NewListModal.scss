@@ -56,14 +56,23 @@
       font-weight: 600;
     }
   }
-
-  .save-button {
+  .btn-group {
     position: absolute;
     bottom: 10px;
-    background-color: #403f3d;
-    color: #ffff;
-    font-size: 12px;
+
+    .save-button {
+      background-color: #403f3d;
+      color: #ffff;
+      font-size: 12px;
+    }
+
+    .cancel-button {
+      margin-left: 5px;
+      color: #403f3d;
+    }
   }
+
+
 }
 
 .input-content::-webkit-scrollbar {

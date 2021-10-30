@@ -1,6 +1,6 @@
 import { Card, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import {activateModal} from "../../../store/actions/actions"; 
+import {activateModal} from "../../../store/actions/modalActions"; 
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 

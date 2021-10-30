@@ -7,7 +7,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import axios from 'axios'
 
 
-import { deactivateModal } from "../../store/actions/actions";
+import { deactivateModal } from "../../store/actions/modalActions";
 import { Labels } from "../labels/labels";
 
 import "./NewListModal.scss"
@@ -36,20 +36,18 @@ const NewListModal = () => {
     }
 
     const postNote = () => {
-        axios.post(`${process.env.REACT_APP_BASE_URL}/postNewNote`, {
-            title: title,
-            content: content,
-            label: label
+        axios({
+            method: 'POST',
+            data: {
+                title: title,   
+                label: label,
+                content: content
+            },
+            url: `${process.env.REACT_APP_BASE_URL}/postnewnote`
         })
-            .then(result => {
-                console.log(result)
-            })
-            .catch(err => {
-                console.log(err)
-            })
     }
 
-    console.log(title, content, label);
+    console.log( label);
 
     return(
     <Modal
@@ -106,13 +104,10 @@ const NewListModal = () => {
                         }}
                     />
                 </div>
-                <Button 
-                    className="save-button"
-                    onClick={postNote}
-                >
-                    Save
-                </Button>
- 
+                <div className="btn-group">
+                    <Button  className="save-button"  onClick={postNote}>Save</Button>
+                    <Button  className="cancel-button"  onClick={postNote}>Cancel</Button>
+                </div>
             </div>
 
             <div className="utility">

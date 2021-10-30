@@ -12,14 +12,16 @@ exports.getNotes = (req, res, next) => {
 }
 
 exports.createNewNote = (req, res, next) => {
-    const {title, labels, type, content } = req.body;
+    const title = req.body.title;
+    const label = req.body.label;
+    const content = req.body.content
 
     console.log(req.body)
 
     const newNote = new Note({
         title: title,
-        labels: labels,
-        type: type,
+        label: label,
+        // type: type,
         content: content,
         // status: status
     })
@@ -30,6 +32,6 @@ exports.createNewNote = (req, res, next) => {
             res.send(result)
         })
         .catch(err => {
-            console.log(result)
+            console.log(err)
         })
 }
