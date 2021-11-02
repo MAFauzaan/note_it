@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Container, Grid, ThemeProvider } from "@mui/material";
 import NoteIcon from '@mui/icons-material/Note';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -6,12 +7,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Todo from "./components/tabs/todo/Todo";
 import theme from "./CustomTheme";
 import "./App.scss"
-
-
-
+import { getNotes } from "./store/actions/notesActions";
+    
 const App = () => {                                 
+    const dispatch = useDispatch();
+    const notes = useSelector(state => state.notes.notes)
 
     const [ defaultTab, setDefaultTab ] = useState('todo')
+
+    useEffect(() => {
+        dispatch(getNotes())
+    }, [dispatch]);
+
+    console.log(notes)
 
     return (  
         <ThemeProvider theme={theme}>

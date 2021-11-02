@@ -1,0 +1,5 @@
+export const ACTIVATE = "ACTIVATE"
+export const DEACTIVATE = "DEACTIVATE"
+export const ADD_NEW_NOTE = "ADD_NEW_NOTE"
+export const GET_NOTES = "GET_NOTES"
+export const SET_NOTES = "SET_NOTES"

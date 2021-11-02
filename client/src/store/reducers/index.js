@@ -5,7 +5,7 @@ import modalReducer from "./modalReducer";
 
 
 const reducers = combineReducers({
-    note: notesReducer,
+    notes: notesReducer,
     modal: modalReducer
 })
 

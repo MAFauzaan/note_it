@@ -2,7 +2,7 @@ const Note = require('../models/Note'); //MONGOOSE MODEL
 
 
 exports.getNotes = (req, res, next) => {
-    Note.find({})
+    Note.find()
     .then(notes => {
         res.send(notes)
     })

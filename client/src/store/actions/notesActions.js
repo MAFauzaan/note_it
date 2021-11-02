@@ -1,12 +1,14 @@
-export const addNote = (note) => {
-    return {
-        type: 'ADD_NEW_NOTE',
-        payload: note
-    };
-};
+import * as types from '../types'
 
-export const fetchNote = () => {
-    return {
-        type: 'FETCH_NOTE'
+export const getNotes = () => {
+    return{
+        type: types.GET_NOTES
+    }
+}
+
+export const setNotes = (notes) => {
+    return{
+        type: types.SET_NOTES,
+        notes
     }
 }
